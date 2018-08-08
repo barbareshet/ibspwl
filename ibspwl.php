@@ -13,8 +13,8 @@
  * @package           Ibspwl
  *
  * @wordpress-plugin
- * Plugin Name:       simple posts wishlist
- * Plugin URI:        https://www.barbareshet.co.il
+ * Plugin Name:       Simple Posts Wishlist
+ * Plugin URI:        https://github.com/barbareshet/ibspwl
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
  * Author:            Ido Barnea
