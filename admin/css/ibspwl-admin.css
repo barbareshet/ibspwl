@@ -2,3 +2,8 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+@import "../vendor/fontawesome/css/all.css";
+select{
+    font-family: FontAwesome, sans-serif;
+    font-style: normal;
+}

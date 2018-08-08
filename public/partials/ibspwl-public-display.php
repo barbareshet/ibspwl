@@ -11,6 +11,8 @@
  * @package    Ibspwl
  * @subpackage Ibspwl/public/partials
  */
-?>
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
+?>
+public page
+
+

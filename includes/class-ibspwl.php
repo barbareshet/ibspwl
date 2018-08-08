@@ -157,6 +157,14 @@ class Ibspwl {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		// Save/Update our plugin options
+		$this->loader->add_action('admin_init', $plugin_admin, 'options_update');
+		// Add menu item
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_menu_page' );
+		// Add Settings link to the plugin
+		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
+		$this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
+
 	}
 
 	/**
@@ -172,6 +180,17 @@ class Ibspwl {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		/**
+		 * Register shortcode via loader
+		 *
+		 * Use: [short-code-name args]
+		 *
+		 * @link https://github.com/DevinVinson/WordPress-Plugin-Boilerplate/issues/262
+		 */
+		$this->loader->add_shortcode( "wishlist", $plugin_public, "wishlist_modal_shortcode", $priority = 10, $accepted_args = 2 );
+		$this->loader->add_shortcode( "add-to-wishlist", $plugin_public, "add_to_wishlist_shortcode", $priority = 10, $accepted_args = 2 );
+		$this->loader->add_shortcode( "show-wishlist", $plugin_public, "show_wishlist_shortcode", $priority = 10, $accepted_args = 2 );
+		$this->loader->add_shortcode( "wishlist-form", $plugin_public, "wishlist_form_shortcode", $priority = 10, $accepted_args = 2 );
 
 	}
 

@@ -72,7 +72,8 @@ class Ibspwl_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
+		wp_enqueue_style( $this->plugin_name.'-bs-4-style', plugin_dir_url( __FILE__ ).'vendor/bootstrap/css/bootstrap.min.css', array(), $this->version, 'all');
+		wp_enqueue_style( $this->plugin_name.'-fa-5-style', plugin_dir_url( __FILE__ ).'vendor/fontawesome/css/all.min.css', array(), $this->version, 'all');
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ibspwl-public.css', array(), $this->version, 'all' );
 
 	}
@@ -96,8 +97,28 @@ class Ibspwl_Public {
 		 * class.
 		 */
 
+		wp_enqueue_script( $this->plugin_name.'-js-cookie', plugin_dir_url( __FILE__ ) . 'vendor/js-cookie/js-cookie.js', array( 'jquery' ), $this->version, true);
+		wp_enqueue_script( $this->plugin_name.'-bs-4-script', plugin_dir_url( __FILE__ ) . 'vendor/bootstrap/js/bootstrap.bundle.min.js', array( 'jquery' ), $this->version, true);
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ibspwl-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 
+
+
+	public function wishlist_modal_shortcode($args, $content=""){
+
+		include_once( 'partials/' . $this->plugin_name . '-public-modal.php' );
+	}
+	public function add_to_wishlist_shortcode($args, $content=""){
+
+		ob_start();
+		include_once( 'partials/' . $this->plugin_name . '-public-add-to-wishlist.php' );
+		return ob_get_clean();
+	}
+	public function show_wishlist_shortcode($args, $content=""){
+		include_once( 'partials/' . $this->plugin_name . '-public-wishlist-triger.php' );
+	}
+	public function wishlist_form_shortcode($args, $content=""){
+		include_once( 'partials/' . $this->plugin_name . '-public-wishlist-form.php' );
+	}
 }
