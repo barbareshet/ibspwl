@@ -158,7 +158,7 @@ class Ibspwl_Admin {
 
 		$valid['add_to_wl_icon']    = ( isset($input['add_to_wl_icon'] )    && ! empty( $input['add_to_wl_icon'] ) )    ? esc_attr($input['add_to_wl_icon'])    : 'Heart';
 		$valid['wl_icon']           = ( isset($input['wl_icon'] )           && ! empty( $input['wl_icon'] ) )           ? esc_attr($input['wl_icon'])           : 'Star';
-
+		$valid['wl_post_type']      = ( isset( $input['wl_post_type'] )     && ! empty( $input['wl_post_type'] ) )      ? 1 : 0;
 		return $valid;
 
 	}

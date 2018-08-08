@@ -16,6 +16,11 @@ if ( ! defined( 'WPINC' ) ) die;
 if ( !current_user_can( 'manage_options' ) )  {
 	wp_die( _e( 'You do not have sufficient permissions to access this page.' ) );
 }
+$ptl_args = array(
+	'public'   => true,
+	'_builtin' => false
+);
+
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
@@ -28,6 +33,8 @@ if ( !current_user_can( 'manage_options' ) )  {
 
 		$add_to_wl_icon =   ( isset( $options['add_to_wl_icon'] )   && ! empty( $options['add_to_wl_icon'] ) )  ? esc_attr( $options['add_to_wl_icon'] ) : 'Heart';
 		$wl_icon =          ( isset( $options['wl_icon'] )          && ! empty( $options['wl_icon'] ) )         ? esc_attr( $options['wl_icon'] ) : 'Star';
+		$wl_post_type =     ( isset( $options['wl_post_type'] )     && ! empty( $options['wl_post_type'] ) )    ? esc_attr( $options['wl_post_type'] ) : '1';
+
 
 		settings_fields($this->plugin_name);
 		do_settings_sections($this->plugin_name);
@@ -60,6 +67,25 @@ if ( !current_user_can( 'manage_options' ) )  {
                             <option <?php if ( $wl_icon == 'star' ) echo 'selected="selected"'; ?> value="star">&#xf004 Star</option>
                             <option <?php if ( $wl_icon == 'list' ) echo 'selected="selected"'; ?> value="smile">&#xf0ca List</option>
                         </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <label for="wl_post_type">
+			                <?php _e( 'Set Wish list Post Type:', $this->plugin_name ); ?>
+                        </label>
+                    </th>
+                    <td>
+                    <?php foreach ( get_post_types( $ptl_args, 'names' ,'and') as $post_type ) {?>
+
+
+                        <p class="description">
+		                    <?php echo $post_type ;?>
+                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>-wl_post_type[]" name="<?php echo $this->plugin_name; ?>[wl_post_type]" value="1" <?php checked( $wl_post_type, 0 ); ?> />
+                        </p>
+
+
+                    <?php } ?>
                     </td>
                 </tr>
             </tbody>

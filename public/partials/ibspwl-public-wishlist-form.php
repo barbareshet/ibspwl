@@ -16,7 +16,7 @@ $ibspwl_wl_nonce = wp_create_nonce( 'ibspwl_wishlist_form_nonce' );
 
 <div class="ibspwl">
 
-    <form id="ibspwl_form" name="ibspwl_form" class="ibspwl-form" method="post" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
+    <form id="ibspwl_form" name="ibspwl_form" class="ibspwl-form" method="post" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post" enctype="multipart/form-data">
 
         <input type="hidden" name="action" value="wishlist_form">
         <input type="hidden" name="ibspwl_form_nonce" value="<?php echo $ibspwl_wl_nonce; ?>">

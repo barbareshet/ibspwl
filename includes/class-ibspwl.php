@@ -188,10 +188,12 @@ class Ibspwl {
 		 * @link https://github.com/DevinVinson/WordPress-Plugin-Boilerplate/issues/262
 		 */
 		$this->loader->add_shortcode( "wishlist", $plugin_public, "wishlist_modal_shortcode", $priority = 10, $accepted_args = 2 );
-		$this->loader->add_shortcode( "add-to-wishlist", $plugin_public, "add_to_wishlist_shortcode", $priority = 10, $accepted_args = 2 );
-		$this->loader->add_shortcode( "show-wishlist", $plugin_public, "show_wishlist_shortcode", $priority = 10, $accepted_args = 2 );
-		$this->loader->add_shortcode( "wishlist-form", $plugin_public, "wishlist_form_shortcode", $priority = 10, $accepted_args = 2 );
+		$this->loader->add_shortcode( "add_to_wishlist", $plugin_public, "add_to_wishlist_shortcode", $priority = 10, $accepted_args = 2 );
+		$this->loader->add_shortcode( "show_wishlist", $plugin_public, "show_wishlist_shortcode", $priority = 10, $accepted_args = 2 );
+		$this->loader->add_shortcode( "wishlist_form", $plugin_public, "wishlist_form_shortcode", $priority = 10, $accepted_args = 2 );
 
+		$this->loader->add_action('wp_ajax_ibspwl_ajax_wishlist', $plugin_public, 'ajax_wishlist');
+		$this->loader->add_action('wp_ajax_nopriv_ibspwl_ajax_wishlist', $plugin_public,'ajax_wishlist');
 	}
 
 	/**

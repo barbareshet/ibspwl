@@ -13,7 +13,7 @@
  */
 
 ?>
-<div class="modal fade modal-lg" id="tg_wishlist_modal" tabindex="-1" role="dialog" aria-labelledby="tg_wishlist_modal" aria-hidden="true">
+<div class="modal fade modal-lg" id="wishlist_modal" tabindex="-1" role="dialog" aria-labelledby="wishlist_modal" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -30,7 +30,7 @@
                     <!-- /.row col-sm-12 modal-title -->
                     <div class="row flex-row" id="wishListFormWrap">
                         <div class="col-sm-12 p-3">
-                            <?php echo do_shortcode('[wishlist-form]');?>
+                            <?php echo do_shortcode('[wishlist_form]');?>
                         </div>
                     </div>
                 </div>

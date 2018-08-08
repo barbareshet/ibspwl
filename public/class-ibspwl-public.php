@@ -47,6 +47,8 @@ class Ibspwl_Public {
 	 * @param      string    $plugin_name       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
+
+
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
@@ -83,6 +85,7 @@ class Ibspwl_Public {
 	 *
 	 * @since    1.0.0
 	 */
+
 	public function enqueue_scripts() {
 
 		/**
@@ -99,26 +102,74 @@ class Ibspwl_Public {
 
 		wp_enqueue_script( $this->plugin_name.'-js-cookie', plugin_dir_url( __FILE__ ) . 'vendor/js-cookie/js-cookie.js', array( 'jquery' ), $this->version, true);
 		wp_enqueue_script( $this->plugin_name.'-bs-4-script', plugin_dir_url( __FILE__ ) . 'vendor/bootstrap/js/bootstrap.bundle.min.js', array( 'jquery' ), $this->version, true);
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ibspwl-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name.'-public-script', plugin_dir_url( __FILE__ ) . 'js/ibspwl-public.js', array( 'jquery' ), $this->version, true );
+		wp_localize_script( $this->plugin_name.'-public-script', 'wp_ajax_wishlist', array(
+			'ajax_url'      => admin_url( 'admin-ajax.php' ),
+			'check_nonce'   => wp_create_nonce('wishlist-nonce'),
+			'postID'        =>  get_the_ID(),
 
+			) );
 	}
 
-
+	/**
+	 * @param        $args
+	 * @param string $content
+	 *
+	 * @return string
+	 */
 
 	public function wishlist_modal_shortcode($args, $content=""){
-
+		ob_start();
 		include_once( 'partials/' . $this->plugin_name . '-public-modal.php' );
+		return ob_get_clean();
 	}
-	public function add_to_wishlist_shortcode($args, $content=""){
 
+	/**
+	 * @param        $args
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+
+	public function add_to_wishlist_shortcode($args, $content=""){
 		ob_start();
 		include_once( 'partials/' . $this->plugin_name . '-public-add-to-wishlist.php' );
 		return ob_get_clean();
 	}
+
+	/**
+	 * @param        $args
+	 * @param string $content
+	 */
+
 	public function show_wishlist_shortcode($args, $content=""){
 		include_once( 'partials/' . $this->plugin_name . '-public-wishlist-triger.php' );
 	}
+
+	/**
+	 * @param        $args
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+
 	public function wishlist_form_shortcode($args, $content=""){
+		ob_start();
 		include_once( 'partials/' . $this->plugin_name . '-public-wishlist-form.php' );
+		return ob_get_clean();
 	}
+
+	public function ajax_wishlist(){
+
+
+		$in_wl              =   array( 'status' => 0);
+		$post_id            =   absint( $_POST['post_id']);
+		$in_fav             =   $_POST['in_fav'];
+		$post_img           =   $_POST['post_img'];
+		$post_title         =   $_POST['post_title'];
+
+
+	}
+
+
 }

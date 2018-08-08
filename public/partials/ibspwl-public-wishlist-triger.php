@@ -7,6 +7,6 @@
  */
 $fa = 'far';
 ?>
-<a class="tg-whislist-icon" href="#" role="button" id="wishListModalTrigger" data-toggle="modal" data-target="#tg_wishlist_modal">
+<a class="whislist-icon" href="#" role="button" id="wishListTrigger" data-toggle="modal" data-target="#wishlist_modal">
 	<i class="<?php echo $fa;?> fa-star mr-2" aria-hidden="true"></i>
 </a>
